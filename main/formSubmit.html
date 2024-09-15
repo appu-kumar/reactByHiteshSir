@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    li {
+      list-style: none;
+    }
+    .dataList ul{
+      display:flex;
+      gap:20px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<!-- addd react, react-dom, babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script type="text/babel">
+
+  const Form = () => {
+
+
+    // store the all the data
+    const [data, setData] = React.useState([]);
+
+    // const [userName,setUserName]=React.useState();
+    const [userName, setUserName] = React.useState('');
+    const [password, setPassword] = React.useState('')
+    const [isValid, setIsValid] = React.useState(false);
+
+
+    const changeUserName = (e) => {
+      setUserName(e.target.value);
+    }
+
+    const changePassword = (e) => {
+      setPassword(e.target.value);
+    }
+
+    const changeValid = (e) => {
+      setIsValid(e.target.checked);
+    }
+
+
+    const submitForm = (e) => {
+      e.preventDefault();
+      const newData = {
+        userName,
+        password,
+        isValid,
+      }
+
+      setData([...data, newData]);
+      console.log(data);
+    }
+
+    const fetchData = () => {
+
+    }
+
+    const deleteData = (cidx) => {
+      let updatedData = data.filter((datum, idx) => {
+        return idx != cidx;
+      })
+
+      setData(updatedData);
+    }
+
+    const updateData=(cidx,userName,password,isValid)=>{
+        setUserName('');
+        setPassword('');
+        setIsValid(false);
+      let updatedData=data.map((datum,idx)=>{
+        
+        if(idx===cidx){
+            datum.userName=userName;
+            datum.password=password;
+            datum.isValid=isValid;
+        }
+
+        return datum;
+      })
+
+      setData(updatedData);
+
+    }
+
+    return (<>
+      <button onClick={fetchData}> Fetch Data</button>
+      <form onSubmit={submitForm}>
+
+        <input type='text' placeholder="userName" value={userName} onChange={changeUserName} /><br />
+        <input type='password' placeholder="password" value={password} onChange={changePassword} /><br />
+        Above 16:<input type='checkbox' checked={isValid} onClick={changeValid} /><br />
+        <input type='submit' />
+      </form>
+
+      <div className='output'>
+
+        {data.map((datum, idx) =>
+          <div className='dataList' key={idx}>
+            <ul>
+              <li >{datum.userName}</li>
+              <li >{datum.password}</li>
+              <li >{datum.isValid ? 'valid' : 'not valid'}</li>
+              <li><button onClick={() => deleteData(idx)}>Delete</button></li>
+              <li><button onClick={() => updateData(idx,userName,password,isValid)}>Edit</button></li>
+            </ul>
+          </div>
+        )}
+
+      </div>
+    </>)
+  }
+
+  const App = () => {
+
+    return (
+      <>
+        <Form />
+      </>
+    )
+  }
+
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+</script>
+
+</html>

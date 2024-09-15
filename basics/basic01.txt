@@ -1,0 +1,69 @@
+Why to Learn React ?
+- hype , job, trend, build UI
+makes casy to manage & build complex front end
+
+
+When should I Learn React ?
+- After mastexing jS
+most ptoject dont need react in initial phase
+
+State - jS state, UI -> DOM
+
+React is a Library?  Yes 
+
+
+
+Topics to learn 
+    core of the react (state or UI manipulation jsx)
+    component reusability(props)
+    reusing of component 
+    how to propogate change (hooks)
+
+NOTE:::
+React is not a complete solution in most case.
+
+
+Additional addon to react
+   router (react don't have Router)
+   state management (React dont have state management)
+   redux, redux toolkit etc.
+
+
+
+jsx----> javascript xml means we can write the html like structure inside the js file.
+Babel---> is a JavaScript compiler that transforms modern JavaScript and JSX ---> into browser-compatible code.
+babel is not a part of the react.
+babel is separate tool, It works with js  but not the part of js.
+
+inside jsx-->   {username}   this is called final evaluated expression we can not write js directly okay. outside of the jsx u can write if-else or while or js syntax okay.
+UI updation---> ko react control karta hai hooks ki help se
+
+========================== Creating react project with creat-react-app ==================
+node -v
+npm -v
+Note::  please download npm creat-react-app  first if you do not have okay
+npx create-react-app my-app
+cd my-app
+npm run start     or npm start
+
+
+========================= Creating react project with vite ===============
+node -v
+npm -v
+npm create vite@latest my-app
+---> after the just above command it will show language and many more choose accordingly
+cd my-app
+npm install
+npm run dev
+
+
+
+
+
+
+
+ 
+
+
+
+
